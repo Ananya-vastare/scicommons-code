@@ -1,0 +1,219 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  background: #eafaf1;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+  margin-left: 250px !important;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🌿 Animated Blobs */
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 0;
+  animation: float 10s ease-in-out infinite alternate;
+}
+
+/* Blob 1 */
+.container::before {
+  width: 320px;
+  height: 320px;
+  background: #a7f3d0;
+  top: 10%;
+  left: 10%;
+}
+
+/* Blob 2 */
+.container::after {
+  width: 420px;
+  height: 420px;
+  background: #6ee7b7;
+  bottom: 10%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+/* Floating animation */
+@keyframes float {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(30px, -30px); }
+}
+
+/* Card — narrow by default, expands when PDF is loaded */
+.upload-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  padding: 45px;
+  border-radius: 24px;
+  width: 420px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.6s ease-in-out;
+  position: relative;
+  z-index: 1;
+  transition: width 0.4s ease, padding 0.4s ease;
+}
+
+/* Expand card when PDF viewer is present */
+.upload-card.has-pdf {
+  width: min(1400px, calc(100vw - 270px));
+  padding: 32px 36px;
+  text-align: left;
+}
+
+/* Title */
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #065f46;
+}
+
+/* Subtitle */
+.subtitle {
+  color: #4b5563;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+/* Drop Zone */
+.drop-zone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #34d399;
+  border-radius: 16px;
+  height: 170px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #065f46;
+  font-size: 16px;
+  background: #f0fdf4;
+}
+
+.drop-zone input {
+  display: none;
+}
+
+.drop-zone:hover {
+  border-color: #10b981;
+  background: #dcfce7;
+  transform: scale(1.04);
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.25);
+}
+
+/* Compact drop zone when PDF is showing */
+.upload-card.has-pdf .drop-zone {
+  height: 56px;
+  border-radius: 10px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.pdf-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  margin-bottom: 12px;
+  background: #f0fdf4;
+  border-radius: 12px;
+  border: 1px solid #d1fae5;
+}
+
+.pdf-nav-btn {
+  padding: 6px 18px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.pdf-nav-btn:hover:not(:disabled) {
+  background-color: #059669;
+}
+
+.pdf-nav-btn:disabled {
+  background-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.pdf-page-info {
+  color: #065f46;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.pdf-jump {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.pdf-jump-input {
+  width: 60px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+  outline: none;
+}
+
+.pdf-jump-input:focus {
+  border-color: #10b981;
+}
+
+.pdf-document-wrapper {
+  border: 1px solid #d1fae5;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  min-height: 400px;
+}
+
+.pdf-status {
+  padding: 3rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+.pdf-error {
+  color: #ef4444;
+  font-weight: 600;
+}
