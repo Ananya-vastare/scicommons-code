@@ -1,4 +1,4 @@
-## SciCommons Frontend
+## SciCommons AItext summarizer
 
 A web application for the SciCommons platform built with React and TypeScript.
 
